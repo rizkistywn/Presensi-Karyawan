@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-
+#[AllowDynamicProperties]
 class M_Front extends CI_Model
 {
 
@@ -40,12 +40,12 @@ class M_Front extends CI_Model
         }
     }
 
-    public function do_absen()
+    public function do_absen($existing_data)
     {
         $appsettings = $this->appsetting;
         $today = $this->get_today_date;
         $clocknow = date("H:i:s");
-        if ($this->db->get_where('db_absensi', ['tgl_absen' => $today, 'kode_pegawai' => $this->get_datasess['kode_pegawai']])->row_array()) {
+        if ($existing_data) {
             $data = [
                 'jam_masuk' => $clocknow
             ];

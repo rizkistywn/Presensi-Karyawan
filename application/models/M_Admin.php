@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
+#[AllowDynamicProperties]
 
 class M_Admin extends CI_Model
 {

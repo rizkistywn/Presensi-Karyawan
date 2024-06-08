@@ -58,7 +58,7 @@
                             <label for="absen_mulai" class="col-sm-4 col-form-label">Absen Dimulai Jam</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id="absen_mulai" name="absen_mulai" value="<?= $nameapp = (empty($dataapp['absen_mulai'])) ? '06:00:00' : $dataapp['absen_mulai']; ?>">
+                                    <input type="text" class="form-control" id="absen_mulai" name="absen_mulai" value="<?= $nameapp = (empty($dataapp['absen_mulai'])) ? '08:00:00' : $dataapp['absen_mulai']; ?>">
                                     <div class="input-group-append">
                                         <button class="input-group-text" type="button" id="setTimebtn" tabindex="-1">Set Current Time</button>
                                     </div>
@@ -68,7 +68,7 @@
                         <div class="form-group row">
                             <label for="absen_sampai" class="col-sm-4 col-form-label">Batas Absen Masuk</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="absen_sampai" name="absen_sampai" value="<?= $nameapp = (empty($dataapp['absen_mulai_to'])) ? '11:00:00' : $dataapp['absen_mulai_to']; ?>">
+                                <input type="text" class="form-control" id="absen_sampai" name="absen_sampai" value="<?= $nameapp = (empty($dataapp['absen_mulai_to'])) ? '10:00:00' : $dataapp['absen_mulai_to']; ?>">
                             </div>
                         </div>
                         <div class="form-group row">

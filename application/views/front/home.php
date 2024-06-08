@@ -33,9 +33,6 @@
             <div class="card mb-4">
                 <div class="card-header text-center">
                     <span class="fas fa-user mr-1"></span>Identitas Diri
-                    <div class="float-right">
-                        <button id="qrcode-pegawai" class="btn btn-primary" data-toggle="modal" data-target="#qrcodemodal"><span class="fas fa-qrcode mr-1"></span>QR CODE</button>
-                    </div>
                 </div>
                 <div class="card-body">
                     <div class="row detail">
@@ -92,7 +89,7 @@
         </div>
         <div class="col-xl-5">
             <div class="card mb-4">
-                <div class="card-header text-center"><span class="fas fa-clock mr-1"></span>Absensi</div>
+                <div class="card-header text-center"><span class="fas fa-clock mr-1"></span>Presensi</div>
                 <div class="card-body text-center">
                     <div id="infoabsensi"></div>
                     <?php if ($dataapp['maps_use'] == 1) : ?>
@@ -104,61 +101,11 @@
                         <h3 id="clocknow"></h3>
                         <h3 id="datenow"></h3>
                     </div>
-                    <?= form_dropdown('ket_absen', ['Bekerja Di Kantor' => 'Bekerja Di Kantor', 'Bekerja Di Rumah / WFH' => 'Bekerja Di Rumah / WFH', 'Sakit' => 'Sakit', 'Cuti' => 'Cuti'], '', ['class' => 'form-control align-content-center my-2', 'id' => 'ket_absen']); ?>
+                    <?= form_dropdown('ket_absen', ['Bekerja Di Rumah / WFH' => 'Bekerja Di Rumah / WFH', 'Sakit' => 'Sakit', 'Izin' => 'Izin'], '', ['class' => 'form-control align-content-center my-2', 'id' => 'ket_absen']); ?>
                     <div class="mt-2">
-                        <div id="func-absensi">
-                            <p class="font-weight-bold">Status Kehadiran: <?= $statuspegawai = (empty($dbabsensi['status_pegawai'])) ? '<span class="badge badge-primary">Belum Absen</span>' : (($dbabsensi['status_pegawai'] == 1) ? '<span class="badge badge-success">Sudah Absen</span>' : '<span class="badge badge-danger">Absen Terlambat</span>'); ?></p>
-                            <div id="jamabsen">
-                                <p>Waktu Datang: <?= $jammasuk = (empty($dbabsensi['jam_masuk'])) ? '00:00:00' : $dbabsensi['jam_masuk']; ?></p>
-                                <p>Waktu Pulang: <?= $jammasuk = (empty($dbabsensi['jam_pulang'])) ? '00:00:00' : $dbabsensi['jam_pulang']; ?></p>
-                            </div>
-                        </div>
-                        <button class="btn btn-dark" id="btn-absensi">Absen</button>
+                        <button class="btn btn-dark" id="btn-absensi">Presensi</button>
                     </div>
                 </div>
-                <div class="card-footer">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <div class="text-muted">Absen Datang Jam: <?= $dataapp['absen_mulai'] ?></div>
-                        <div class="text-muted">Absen Pulang Jam: <?= $dataapp['absen_pulang']; ?></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="qrcodemodal" tabindex="-1" role="dialog" aria-labelledby="qrcodemodal" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title text-center" id="qrcodemodallabel"><span class="fas fa-qrcode mr-1"></span>QR Code</h5>
-            </div>
-            <div class="modal-body">
-                <div class="text-center">
-                    <img class="img my-2" src="<?= $img_source = ($user['qr_code_image'] == 'no-qrcode.png' ? base_url('assets/img/no-qrcode.png') : base_url('storage/qrcode_pegawai/' . $user['qr_code_image'])); ?>" style="width:50%;">
-                </div>
-                <dl class="row">
-                    <dt class="col-sm-5">Nama Lengkap:</dt>
-                    <dd class="col-sm-7"><?= $user['nama_lengkap'] ?></dd>
-                    <dt class="col-sm-5">Umur:</dt>
-                    <dd class="col-sm-7"><?= $user['umur'] ?><div class="ml-1 d-inline">Tahun</div>
-                    </dd>
-                    <dt class="col-sm-5">Instansi:</dt>
-                    <dd class="col-sm-7 text-truncate"><?= $user['instansi'] ?></dd>
-                    <dt class="col-sm-5">Jabatan:</dt>
-                    <dd class="col-sm-7"><?= $user['jabatan'] ?></dd>
-                    <dt class="col-sm-5">NPWP:</dt>
-                    <dd class="col-sm-7"><?= $user['npwp'] ?></dd>
-                    <dt class="col-sm-5">Tempat / Tanggal Lahir:</dt>
-                    <dd class="col-sm-7"><?= $user['tempat_lahir'] ?>,<?= $user['tgl_lahir'] ?></dd>
-                    <dt class="col-sm-5">Jenis Kelamin:</dt>
-                    <dd class="col-sm-7"><?= $user['jenis_kelamin'] ?></dd>
-                    <dt class="col-sm-5">Shift Bekerja:</dt>
-                    <dd class="col-sm-7"><?= $shiftpegawai = ($user['bagian_shift'] == 1) ? '<span class="badge badge-success">Full Time</span>' : (($user['bagian_shift'] == 2) ? '<span class="badge badge-warning">Part Time</span>' : '<span class="badge badge-primary">Shift Time</span>'); ?></dd>
-                </dl>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

@@ -512,7 +512,8 @@ class Ajax extends CI_Controller
 
         $bulan = array(1 => "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember");
         $hari = array("Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu");
-        $nowday = $hari[(int)date("w")] . ', ' . date("j ") . $bulan[(int)date('m')] . date(" Y");
+        // $nowday = $hari[(int)date("w")] . ', ' . date("j ") . $bulan[(int)date('m')] . date(" Y");
+        $nowday = date('Y-m-d');
         $data = [];
         $no = 1;
         if ($dataabsen == 'datapgw') {
@@ -527,7 +528,7 @@ class Ajax extends CI_Controller
                     $r->username,
                     $r->npwp,
                     $r->jenis_kelamin,
-                    ($r->role_id == 1) ? '<span class="badge badge-danger ml-1">Administrator</span>' : (($r->role_id == 2) ? '<span class="badge badge-primary ml-1">Moderator</span>' : (($r->role_id == 3) ? '<span class="badge badge-success ml-1">Pegawai</span>' : '<span class="badge badge-secondary ml-1">Tidak Ada Role</span>')),
+                    ($r->role_id == 1) ? '<span class="badge badge-danger ml-1">Administrator</span>' : (($r->role_id == 2) ? '<span class="badge badge-primary ml-1">Pimpinan</span>' : (($r->role_id == 3) ? '<span class="badge badge-success ml-1">Pegawai</span>' : '<span class="badge badge-secondary ml-1">Tidak Ada Role</span>')),
                     ($r->bagian_shift == 1) ? '<span class="badge badge-success ml-1">Full Time</span>' : (($r->bagian_shift == 2) ? '<span class="badge badge-warning">Part Time</span>' : '<span class="badge badge-primary">Shift Time</span>'),
                     $r->laptop_mac_address,
                     $r->hp_mac_address,
@@ -560,8 +561,6 @@ class Ajax extends CI_Controller
                         $r->tgl_absen,
                         $r->nama_pegawai,
                         $r->jam_masuk,
-                        $r->jam_pulang,
-                        (empty($r->status_pegawai)) ? '<span class="badge badge-primary">Belum Absen</span>' : (($r->status_pegawai == 1) ? '<span class="badge badge-success">Sudah Absen</span>' : '<span class="badge badge-danger">Absen Terlambat</span>'),
                         '<div class="btn-group btn-small " style="text-align: right;">
                     <button class="btn btn-primary detail-absen" data-absen-id="' . $r->id_absen . '" title="Lihat Absensi"><span class="fas fa-fw fa-address-card"></span></button>
                     <button class="btn btn-danger delete-absen" title="Hapus Absensi" data-absen-id="' . $r->id_absen . '"><span class="fas fa-trash"></span></button>
@@ -577,8 +576,6 @@ class Ajax extends CI_Controller
                         $r->tgl_absen,
                         $r->nama_pegawai,
                         $r->jam_masuk,
-                        $r->jam_pulang,
-                        (empty($r->status_pegawai)) ? '<span class="badge badge-primary">Belum Absen</span>' : (($r->status_pegawai == 1) ? '<span class="badge badge-success">Sudah Absen</span>' : '<span class="badge badge-danger">Absen Terlambat</span>'),
                         '<div class="btn-group btn-small " style="text-align: right;">
                     <button class="btn btn-primary detail-absen" data-absen-id="' . $r->id_absen . '" title="Lihat Absensi"><span class="fas fa-fw fa-address-card"></span></button>
                     <button class="btn btn-warning print-absen" title="Cetak Absensi" data-absen-id="' . $r->id_absen . '" data-toggle="modal" data-target="#printabsensimodal"><span class="fas fa-print"></span></button>
@@ -594,21 +591,18 @@ class Ajax extends CI_Controller
                     $r->tgl_absen,
                     $r->nama_pegawai,
                     $r->jam_masuk,
-                    $r->jam_pulang,
-                    (empty($r->status_pegawai)) ? '<span class="badge badge-primary">Belum Absen</span>' : (($r->status_pegawai == 1) ? '<span class="badge badge-success">Sudah Absen</span>' : '<span class="badge badge-danger">Absen Terlambat</span>'),
                     '<div class="btn-group btn-small " style="text-align: right;">
                     <button class="btn btn-primary detail-absen" data-absen-id="' . $r->id_absen . '" title="Lihat Absensi"><span class="fas fa-fw fa-address-card"></span></button>
                     </div>'
                 ];
             }
         } elseif ($dataabsen == 'getallmsk') {
-            $query = $this->db->get_where("db_absensi", ['tgl_absen' => $nowday, 'status_pegawai' => 1]);
+            $query = $this->db->get_where("db_absensi", ['tgl_absen' => $nowday]);
             foreach ($query->result() as $r) {
                 $data[] = [
                     $no++,
                     $r->jam_masuk,
                     $r->nama_pegawai,
-                    (empty($r->status_pegawai)) ? '<span class="badge badge-primary">Belum Absen</span>' : (($r->status_pegawai == 1) ? '<span class="badge badge-success">Sudah Absen</span>' : '<span class="badge badge-danger">Absen Terlambat</span>')
                 ];
             }
         } elseif ($dataabsen == 'getalltrl') {
@@ -618,7 +612,6 @@ class Ajax extends CI_Controller
                     $no++,
                     $r->jam_masuk,
                     $r->nama_pegawai,
-                    (empty($r->status_pegawai)) ? '<span class="badge badge-primary">Belum Absen</span>' : (($r->status_pegawai == 1) ? '<span class="badge badge-success">Sudah Absen</span>' : '<span class="badge badge-danger">Absen Terlambat</span>')
                 ];
             }
         }
@@ -674,24 +667,6 @@ class Ajax extends CI_Controller
             [
                 'field' => 'timezone_absen',
                 'label' => 'Zona Waktu Absen',
-                'rules' => 'trim|required|xss_clean',
-                'errors' => ['required' => 'You must provide a %s.', 'xss_clean' => 'Please check your form on %s.']
-            ],
-            [
-                'field' => 'absen_mulai',
-                'label' => 'Absen Mulai',
-                'rules' => 'trim|required|xss_clean',
-                'errors' => ['required' => 'You must provide a %s.', 'xss_clean' => 'Please check your form on %s.']
-            ],
-            [
-                'field' => 'absen_sampai',
-                'label' => 'Batas Absen Masuk',
-                'rules' => 'required|xss_clean',
-                'errors' => ['required' => 'You must provide a %s.', 'xss_clean' => 'Please check your form on %s.']
-            ],
-            [
-                'field' => 'absen_pulang_sampai',
-                'label' => 'Absen Pulang',
                 'rules' => 'trim|required|xss_clean',
                 'errors' => ['required' => 'You must provide a %s.', 'xss_clean' => 'Please check your form on %s.']
             ]

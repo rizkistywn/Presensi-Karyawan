@@ -37,7 +37,7 @@ function is_admin()
     }
 }
 
-function is_moderator()
+function is_pimpinan()
 {
     $ci = get_instance();
     $role_id = $ci->session->userdata('role_id');

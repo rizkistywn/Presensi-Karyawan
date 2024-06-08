@@ -46,7 +46,7 @@
         })
 
         $('#absen_bulan').datepicker({
-            format: "MM",
+            format: "mm",
             minViewMode: 'months',
             maxViewMode: 'months',
             startView: 'months',
@@ -538,8 +538,8 @@
             $("#clear-absensi").on('click', function(e) {
                 e.preventDefault();
                 Swal.fire({
-                    title: 'Hapus Semua Absen?',
-                    text: "Anda yakin ingin menghapus absensi ini!",
+                    title: 'Hapus Semua Presensi?',
+                    text: "Anda yakin ingin menghapus presensi ini!",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -553,7 +553,7 @@
                             beforeSend: function() {
                                 swal.fire({
                                     imageUrl: "<?= base_url('assets'); ?>/img/ajax-loader.gif",
-                                    title: "Menghapus Semua Absen",
+                                    title: "Menghapus Semua Presensi",
                                     text: "Please wait",
                                     showConfirmButton: false,
                                     allowOutsideClick: false
@@ -562,15 +562,15 @@
                             success: function(data) {
                                 swal.fire({
                                     icon: 'success',
-                                    title: 'Menghapus Semua Absen Berhasil',
-                                    text: 'Absen telah dihapus!',
+                                    title: 'Menghapus Semua Presensi Berhasil',
+                                    text: 'Presensi telah dihapus!',
                                     showConfirmButton: false,
                                     timer: 1500
                                 });
                                 $('#list-absensi-all').DataTable().ajax.reload();
                             },
                             error: function() {
-                                swal.fire("Hapus Absensi Gagal", "Ada Kesalahan Saat menghapus semua absensi!", "error");
+                                swal.fire("Hapus Presensi Gagal", "Ada Kesalahan Saat menghapus semua absensi!", "error");
                             }
                         });
                     }
@@ -583,8 +583,8 @@
                 var absen_id = $(e.currentTarget).attr('data-absen-id');
                 if (absen_id === '') return;
                 Swal.fire({
-                    title: 'Hapus Absen Ini?',
-                    text: "Anda yakin ingin menghapus absensi ini!",
+                    title: 'Hapus Presensi Ini?',
+                    text: "Anda yakin ingin menghapus presensi ini!",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',

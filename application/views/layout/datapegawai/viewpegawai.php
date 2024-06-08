@@ -29,7 +29,3 @@
 
     </div>
 </div>
-<div class="text-center">
-    <h4 class="my-2">Barcode Pegawai</h4>
-    <img class="img my-2 img-rounded" src="<?= ($datapegawai['qr_code_image'] == 'no-qrcode.png' ? base_url('assets/img/no-qrcode.png') : base_url('storage/qrcode_pegawai/' . $datapegawai['qr_code_image'])); ?>" style="width:15%;">
-</div>

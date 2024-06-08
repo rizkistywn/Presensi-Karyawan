@@ -55,36 +55,6 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="absen_mulai" class="col-sm-4 col-form-label">Absen Dimulai Jam</label>
-                            <div class="col-sm-8">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id="absen_mulai" name="absen_mulai" value="<?= $nameapp = (empty($dataapp['absen_mulai'])) ? '06:00:00' : $dataapp['absen_mulai']; ?>">
-                                    <div class="input-group-append">
-                                        <button class="input-group-text" type="button" id="setTimebtn" tabindex="-1">Set Current Time</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="absen_sampai" class="col-sm-4 col-form-label">Batas Absen Masuk</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" id="absen_sampai" name="absen_sampai" value="<?= $nameapp = (empty($dataapp['absen_mulai_to'])) ? '11:00:00' : $dataapp['absen_mulai_to']; ?>">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="absen_pulang_sampai" class="col-sm-4 col-form-label">Absen Pulang</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" id="absen_pulang_sampai" name="absen_pulang_sampai" value="<?= $nameapp = (empty($dataapp['absen_pulang'])) ? '16:00:00' : $dataapp['absen_pulang']; ?>">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="lokasi_absensi" class="col-sm-4 col-form-label">Absensi Dengan Lokasi</label>
-                            <div class="col-sm-8">
-                                <div class="custom-control custom-checkbox"><?= form_checkbox('lokasi_absensi', 1, ($dataapp['maps_use'] == 1) ? true : false, 'id="lokasi_absensi" class="custom-control-input"'); ?><label class="custom-control-label" for="lokasi_absensi">Menggunakan Maps</label></div>
-                                <div class="small">(Fitur lokasi ini perlu akses jaringan internet)</div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
                             <div class="col-sm-2">Logo Instansi</div>
                             <div class="col-sm-10">
                                 <div class="row">

@@ -1,12 +1,12 @@
 <div class="container-fluid">
-    <h1 class="my-4"><span class="fas fa-user-check mr-2"></span>Absensi Pegawai</h1>
+    <h1 class="my-4"><span class="fas fa-user-check mr-2"></span>Presensi Pegawai</h1>
     <div class="card">
         <div class="card-header">
             <div class="float-right d-inline">
                 <?php if ($this->session->userdata('role_id') == 1) : ?>
                     <div class="btn btn-danger" id="clear-absensi"><span class="fas fa-trash mr-1"></span>Clear All</div>
                 <?php endif; ?>
-                <a class="btn btn-success" href="<?= base_url('export'); ?>"><span class="fas fa-file mr-1"></span>Export Absensi</a>
+                <a class="btn btn-success" href="<?= base_url('export'); ?>"><span class="fas fa-file mr-1"></span>Export Presensi</a>
                 <div class="btn btn-primary" id="refresh-tabel-absensi"><span class="fas fa-sync-alt mr-1"></span>Refresh Tabel</div>
             </div>
         </div>
@@ -19,8 +19,6 @@
                             <th>Tanggal</th>
                             <th>Nama Pegawai</th>
                             <th>Waktu Datang</th>
-                            <th>Waktu Pulang</th>
-                            <th>Status</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -37,7 +35,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-center" id="viewabsensimodallabel"><span class="fas fa-clock mr-1"></span>Preview Absensi</h5>
+                <h5 class="modal-title text-center" id="viewabsensimodallabel"><span class="fas fa-clock mr-1"></span>Preview Presensi</h5>
             </div>
             <div class="modal-body">
                 <div id="viewdataabsensi"></div>
@@ -54,7 +52,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-center" id="printabsensimodallabel"><span class="fas fa-print mr-1"></span>Print Absensi</h5>
+                <h5 class="modal-title text-center" id="printabsensimodallabel"><span class="fas fa-print mr-1"></span>Print Presensi</h5>
             </div>
             <div class="modal-body">
                 <div id="printdataabsensi"></div>

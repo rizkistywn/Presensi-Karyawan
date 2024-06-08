@@ -116,7 +116,7 @@
                 <div class="form-group row">
                     <label for="role_pegawai" class="col-sm-4 col-form-label">Role Akun</label>
                     <div class="col-sm-8">
-                        <?= form_dropdown('role_pegawai', ['' => 'Select Role', 1 => 'Administrator', 2 => 'Moderator', 3 => 'Pegawai'], set_value('role_pegawai'), 'class="form-control" id="role_pegawai"'); ?>
+                        <?= form_dropdown('role_pegawai', ['' => 'Select Role', 1 => 'Administrator', 2 => 'Pimpinan', 3 => 'Pegawai'], set_value('role_pegawai'), 'class="form-control" id="role_pegawai"'); ?>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -172,12 +172,6 @@
                             <?= form_radio('verifikasi_pegawai', 1, set_radio('verifikasi_pegawai[]', 1), "class='form-check-input'"); ?>
                             <label class="form-check-label" for="verifikasi_pegawai2">Terverifikasi</label>
                         </div>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="barcode_pegawai" class="col-sm-4 col-form-label">Buat Barcode Pegawai</label>
-                    <div class="col-sm-8">
-                        <div class="custom-control custom-checkbox"><input class="custom-control-input" id="barcode_pegawai" type="checkbox" name="barcode_pegawai" /><label class="custom-control-label" for="barcode_pegawai">Dengan Barcode</label></div>
                     </div>
                 </div>
                 <div class="form-group row">

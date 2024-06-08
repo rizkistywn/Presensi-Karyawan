@@ -53,6 +53,8 @@ class M_Auth extends CI_Model
                     }
                     if ($membuat_session['role_id'] == 1) {
                         redirect(base_url('/dashboard'));
+                    } else if ($membuat_session['role_id'] == 2) {
+                        redirect(base_url('/absensi'));
                     } else {
                         redirect(base_url());
                     }

@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <h1 class="my-4"><span class="fas fa-file mr-2"></span>Export Absensi</h1>
+    <h1 class="my-4"><span class="fas fa-file mr-2"></span>Export Presensi</h1>
     <div class="row mb-4">
         <div class="col-xl-6">
             <?= $this->session->flashdata('exportinfo'); ?>

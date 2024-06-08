@@ -15,8 +15,6 @@
                             <th>Tanggal</th>
                             <th>Nama Pegawai</th>
                             <th>Waktu Datang</th>
-                            <th>Waktu Pulang</th>
-                            <th>Status</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>

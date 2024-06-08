@@ -66,7 +66,7 @@ class Admin extends CI_Controller
 
     public function absensi()
     {
-        is_moderator();
+        is_pimpinan();
         $data = [
             'title' => 'Kehadiran Pegawai',
             'user' => $this->get_datasess,

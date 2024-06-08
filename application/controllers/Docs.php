@@ -7,7 +7,7 @@ class Docs extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
-        is_moderator();
+        is_pimpinan();
         $this->get_datasess = $this->db->get_where('user', ['username' =>
         $this->session->userdata('username')])->row_array();
         $this->load->model('M_Front');
@@ -126,11 +126,8 @@ class Docs extends CI_Controller
                 $sheet->setCellValue('B5', 'Nama Pegawai');
                 $sheet->setCellValue('C5', 'Tanggal Absen');
                 $sheet->setCellValue('D5', 'Jam Datang');
-                $sheet->setCellValue('E5', 'Jam Pulang');
-                $sheet->setCellValue('F5', 'Status Kehadiran');
-                $sheet->setCellValue('G5', 'Keterangan Absen');
-                $sheet->setCellValue('H5', 'Titik Lokasi Maps');
-                $sheet->getStyle('A5:F5')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+                $sheet->setCellValue('E5', 'Keterangan Absen');
+                $sheet->getStyle('A5:E5')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
                 $dataabsensi = $querydata;
                 $no = 1;
                 $rowx = 6;
@@ -139,20 +136,14 @@ class Docs extends CI_Controller
                     $sheet->setCellValue('B' . $rowx, $rowabsen->nama_pegawai);
                     $sheet->setCellValue('C' . $rowx, $rowabsen->tgl_absen);
                     $sheet->setCellValue('D' . $rowx, $rowabsen->jam_masuk);
-                    $sheet->setCellValue('E' . $rowx, (empty($rowabsen->jam_pulang)) ? 'Belum Absen Pulang' : $rowabsen->jam_pulang);
-                    $sheet->setCellValue('F' . $rowx, ($rowabsen->status_pegawai == 1) ? 'Sudah Absen' : (($rowabsen->status_pegawai == 2) ? 'Absen Terlambat' : 'Belum Absen'));
-                    $sheet->setCellValue('G' . $rowx, $rowabsen->keterangan_absen);
-                    $sheet->setCellValue('H' . $rowx, (empty($rowabsen->maps_absen)) ? 'Lokasi Tidak Ditemukan' : (($rowabsen->maps_absen == 'No Location') ? 'Lokasi Tidak Ditemukan' : $rowabsen->maps_absen));
+                    $sheet->setCellValue('E' . $rowx, $rowabsen->keterangan_absen);
                     $rowx++;
                 }
                 $spreadsheet->getActiveSheet()->getColumnDimension('A')->setWidth(5);
                 $spreadsheet->getActiveSheet()->getColumnDimension('B')->setWidth(30);
                 $spreadsheet->getActiveSheet()->getColumnDimension('C')->setWidth(28);
                 $spreadsheet->getActiveSheet()->getColumnDimension('D')->setWidth(20);
-                $spreadsheet->getActiveSheet()->getColumnDimension('E')->setWidth(20);
-                $spreadsheet->getActiveSheet()->getColumnDimension('F')->setWidth(25);
-                $spreadsheet->getActiveSheet()->getColumnDimension('G')->setWidth(38);
-                $spreadsheet->getActiveSheet()->getColumnDimension('H')->setWidth(38);
+                $spreadsheet->getActiveSheet()->getColumnDimension('E')->setWidth(38);
 
                 $writer = new PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
                 $filename = "absensipegawai_" . time() . "_bulanan" . "_download";

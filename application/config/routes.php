@@ -59,6 +59,7 @@ $route['dashboard'] = 'admin/dashboard';
 $route['datapegawai'] = 'admin/datapegawai';
 $route['absensi'] = 'admin/absensi';
 
+
 //User URL
 $route['setting'] = 'user/setting';
 $route['profile'] = 'user/profile';

@@ -17,10 +17,6 @@
                 <dd class="col-sm-7"><?= $dataabsensi['tgl_absen'] ?></dd>
                 <dt class="col-sm-5">Waktu Datang:</dt>
                 <dd class="col-sm-7"><?= $dataabsensi['jam_masuk'] ?></dd>
-                <dt class="col-sm-5">Waktu Pulang:</dt>
-                <dd class="col-sm-7"><?= (empty($dataabsensi['jam_pulang'])) ? 'Belum Absen Pulang' : $dataabsensi['jam_pulang']; ?></dd>
-                <dt class="col-sm-5">Status Kehadiran:</dt>
-                <dd class="col-sm-7"><?= ($dataabsensi['status_pegawai'] == 1) ? 'Sudah Absen' : (($dataabsensi['status_pegawai'] == 2) ? 'Absen Terlambat' : 'Belum Absen'); ?></dd>
                 <dt class="col-sm-5">Keterangan Absen:</dt>
                 <dd class="col-sm-7"><?= $dataabsensi['keterangan_absen'] ?></dd>
                 <dt class="col-sm-5">Titik Lokasi Maps:</dt>

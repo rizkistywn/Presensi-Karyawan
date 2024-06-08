@@ -45,56 +45,22 @@ class M_Front extends CI_Model
         $appsettings = $this->appsetting;
         $today = $this->get_today_date;
         $clocknow = date("H:i:s");
-        if (strtotime($clocknow) >= strtotime($appsettings['absen_mulai']) && strtotime($clocknow) <= strtotime($appsettings['absen_mulai_to'])) {
-            if ($this->db->get_where('db_absensi', ['tgl_absen' => $today, 'kode_pegawai' => $this->get_datasess['kode_pegawai']])->row_array()) {
-                $data = [
-                    'jam_masuk' => $clocknow
-                ];
-                $this->db->where('tgl_absen', $today)->where('kode_pegawai', $this->get_datasess['kode_pegawai']);
-                $this->db->update('db_absensi', $data);
-            } else {
-                $data = [
-                    'nama_pegawai' => $this->get_datasess['nama_lengkap'],
-                    'kode_pegawai' => $this->get_datasess['kode_pegawai'],
-                    'jam_masuk' => $clocknow,
-                    'kode_absen' => 'absen_' . date('Ym') . mt_rand(11111, 99999),
-                    'tgl_absen' => $today,
-                    'keterangan_absen' => htmlspecialchars($this->input->post('ket_absen', true)),
-                    'status_pegawai' => 1,
-                    'maps_absen' => $appsettings['maps_use'] == TRUE ? htmlspecialchars($this->input->post('maps_absen', true)) : 'No Location'
-                ];
-                $this->db->insert('db_absensi', $data);
-            }
-        } elseif (strtotime($clocknow) > strtotime($appsettings['absen_mulai_to']) && strtotime($clocknow) >= strtotime($appsettings['absen_pulang'])) {
-            if ($this->db->get_where('db_absensi', ['tgl_absen' => $today, 'kode_pegawai' => $this->get_datasess['kode_pegawai']])->row_array()) {
-                $data = [
-                    'jam_pulang' => $clocknow
-                ];
-                $this->db->where('tgl_absen', $today)->where('kode_pegawai', $this->get_datasess['kode_pegawai']);
-                $this->db->update('db_absensi', $data);
-            } else {
-                $data = [
-                    'nama_pegawai' => $this->get_datasess['nama_lengkap'],
-                    'kode_pegawai' => $this->get_datasess['kode_pegawai'],
-                    'jam_masuk' => $clocknow,
-                    'kode_absen' => 'absen_' . date('Ym') . mt_rand(11111, 99999),
-                    'tgl_absen' => $today,
-                    'keterangan_absen' => htmlspecialchars($this->input->post('ket_absen', true)),
-                    'status_pegawai' => 2,
-                    'maps_absen' => $appsettings['maps_use'] == TRUE ? htmlspecialchars($this->input->post('maps_absen', true)) : 'No Location'
-                ];
-                $this->db->insert('db_absensi', $data);
-            }
-        } elseif (strtotime($clocknow) > strtotime($appsettings['absen_mulai_to']) && strtotime($clocknow) <= strtotime($appsettings['absen_pulang'])) {
+        if ($this->db->get_where('db_absensi', ['tgl_absen' => $today, 'kode_pegawai' => $this->get_datasess['kode_pegawai']])->row_array()) {
+            $data = [
+                'jam_masuk' => $clocknow
+            ];
+            $this->db->where('tgl_absen', $today)->where('kode_pegawai', $this->get_datasess['kode_pegawai']);
+            $this->db->update('db_absensi', $data);
+        } else {
             $data = [
                 'nama_pegawai' => $this->get_datasess['nama_lengkap'],
                 'kode_pegawai' => $this->get_datasess['kode_pegawai'],
                 'jam_masuk' => $clocknow,
                 'kode_absen' => 'absen_' . date('Ym') . mt_rand(11111, 99999),
-                'tgl_absen' => $today,
+                'tgl_absen' => date('Y-m-d'),
                 'keterangan_absen' => htmlspecialchars($this->input->post('ket_absen', true)),
-                'status_pegawai' => 2,
-                'maps_absen' => $appsettings['maps_use'] == TRUE ? htmlspecialchars($this->input->post('maps_absen', true)) : 'No Location'
+                'status_pegawai' => 1,
+                'maps_absen' => 'CENAH HQ'
             ];
             $this->db->insert('db_absensi', $data);
         }
